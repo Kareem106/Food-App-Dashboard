@@ -1,12 +1,13 @@
 import { store } from "../store";
 import axios from "axios";
-import { change_token, change_user_data } from "./UserSlice";
+import { change_token, change_user_data, change_loading } from "./UserSlice";
 const logInHandler = async (formData) => {
   let config = {
     method: "post",
     url: "https://academy-training.appssquare.com/api/login",
     data: formData,
   };
+  store.dispatch(change_loading());
   await axios
     .request(config)
     .then((res) => {
@@ -18,7 +19,8 @@ const logInHandler = async (formData) => {
     })
     .catch((err) => {
       return Promise.reject("failed");
-    });
+    })
+    .finally(() => store.dispatch(change_loading()));
 };
 const signUpHandler = async (formData) => {
   let config = {
@@ -26,13 +28,15 @@ const signUpHandler = async (formData) => {
     url: "https://academy-training.appssquare.com/api/sign_up",
     data: formData,
   };
+  store.dispatch(change_loading());
   await axios
     .request(config)
     .then((res) => {
-      return Promise.resolve("success");
+      return Promise.resolve("account created");
     })
     .catch((err) => {
       return Promise.reject("failed");
-    });
+    })
+    .finally(() => store.dispatch(change_loading()));
 };
 export { logInHandler, signUpHandler };

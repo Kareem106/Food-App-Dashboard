@@ -117,7 +117,7 @@ function Orders() {
       </section>
       <section className='mt-4'>
       <h1 className='font-bold text-2xl mb-4'>previous orders</h1>
-      <div className='grid grid-cols-1 gap-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4'>
         {
           orders.pervious_orders?.map((order)=>{
             return(

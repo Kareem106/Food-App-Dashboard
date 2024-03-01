@@ -1,9 +1,10 @@
 import React from 'react'
 import { signUpHandler } from '../../app/features/UserFeatures';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Bounce } from 'react-toastify';
 function SignUp() {
+  const navigate=useNavigate();
   return (
     <div className='flex justify-center items-center flex-col gap-8 w-full h-full'>
       <h1 className='text-2xl font-bold'>Sign Up</h1>
@@ -12,7 +13,20 @@ function SignUp() {
           e.preventDefault();
           const formData=new FormData(e.target);
           signUpHandler(formData)
-          .then(res=>console.log(res))
+          .then(res=>{
+              toast.success("account created", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+                });
+                navigate("/registration/login");
+          })
           .catch(err=>{
             console.log(err);
             toast.error(err, {
