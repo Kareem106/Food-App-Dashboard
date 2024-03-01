@@ -1,0 +1,27 @@
+* {
+  @apply box-border m-0;
+}
+
+body {
+  @apply text-lg bg-orange-100/50;
+}
+
+.layout {
+  @apply sm:ps-40 relative pb-24 sm:pb-0;
+}
+
+.page {
+  @apply grow p-2;
+}
+
+.page .heading {
+  @apply text-4xl mb-8 uppercase text-orange-500;
+}
+
+#side-bar a.active {
+  @apply bg-orange-400 shadow-xl shadow-orange-400/50;
+}
+
+#side-bar a.active span {
+  @apply inline;
+}
